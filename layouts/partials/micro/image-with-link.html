@@ -1,0 +1,49 @@
+{{ $filename := replace .filename " " "%20" }}
+{{ $filenameParts := split $filename "." }}
+{{ $name := delimit (first (sub (len $filenameParts) 1) $filenameParts) "." }}
+{{ $svg := delimit (slice $name "svg") "." }}
+<figure>
+	{{ if eq (getenv "HUGO_ENV" ) "production" }}
+
+	{{ $weservURL := "//images.weserv.nl" }}
+	{{ $s3Bucket := "https://ashtari-carpets-sfeer.s3.eu-west-3.amazonaws.com/" }}
+	{{ $weservParams := cond (eq .attention "true") "&fit=cover&a=attention" "" }}
+	{{ $weservOutputWebP := "&output=webp" }}
+
+	{{ $widths := slice 1400 1200 900 600 450 300 45 }}
+
+	{{ $srcsetWebP := slice }}
+	{{ $srcset := slice }}
+
+	{{ $scratch := newScratch }}
+	{{ $scratch.Set "src" $filename }}
+
+	{{ range $elem_index, $elem_val := $widths }}
+	{{ $srcWebP := delimit (slice $weservURL "?w=" $elem_val $weservParams $weservOutputWebP "&url=" $s3Bucket ($scratch.Get "src") " " $elem_val "w") "" }}
+	{{ $src := delimit (slice $weservURL "?w=" $elem_val $weservParams "&url=" $s3Bucket ($scratch.Get "src") " " $elem_val "w") "" }}
+	{{ $srcsetWebP = $srcsetWebP | append $srcWebP }}
+	{{ $srcset = $srcset | append $src }}
+	{{ end }}
+	<a href="{{ index (split (index $srcset 0) " ") 0 }}" class="glightbox">
+		<picture class="{{ with .class }}{{ . }}{{ end }}">
+			<source class="lozad" data-srcset="{{ delimit $srcsetWebP ", " }}" sizes="(min-width: 1024px) calc(960px - 1.5rem),
+				(min-width: 1216px) calc(1152px - 1.5rem),
+				(min-width: 1408px) calc(1344px - 1.5rem),
+				100vw" type="image/webp" />
+			<source class="lozad" data-srcset="{{ delimit $srcset ", " }}" sizes="(min-width: 1024px) calc(960px - 1.5rem),
+				(min-width: 1216px) calc(1152px - 1.5rem),
+				(min-width: 1408px) calc(1344px - 1.5rem),
+				100vw" type="image/jpeg" />
+			<img class="image {{ with .class }}{{ . }}{{ end }}" src="/images/lqip/{{ $svg }}" alt="{{ .alt }}" />
+		</picture>
+	</a>
+	{{ else }}
+	<a href="/images/{{ $filename }}" class="glightbox">
+		<picture class="{{ with .class }} {{ . }}{{ end }}">
+			<source class="lozad" data-srcset="/images/{{ $filename }}" sizes="100vw" type="image/jpeg" />
+			<img class="image {{ with .class }}{{ . }}{{ end }}" src="/images/lqip/{{ $svg }}" alt="{{ .alt }}" />
+		</picture>
+	</a>
+	{{ end }}
+	<figcaption class="caption">{{ .alt }}</figcaption>
+</figure>
