@@ -5,7 +5,7 @@
 <figure>
 	{{ if eq (getenv "HUGO_ENV" ) "production" }}
 
-		{{ $weservURL := "//images.weserv.nl/?url=" }}
+		{{ $weservURL := "//images.weserv.nl" }}
 		{{ $s3Bucket := "https://frederikdesmedt.s3.eu-west-3.amazonaws.com/" }}
 		{{ $weservParams := cond (eq .attention "true") "&fit=cover&a=attention" "" }}
 		{{ $weservOutputWebP := "&output=webp" }}
@@ -19,8 +19,8 @@
 		{{ $scratch.Set "src" $filename }}
 
 		{{ range $elem_index, $elem_val := $widths }}
-			{{ $srcWebP := delimit (slice $weservURL $s3Bucket ($scratch.Get "src") "&w=" $elem_val $weservParams $weservOutputWebP " " $elem_val "w") "" }}
-			{{ $src := delimit (slice $weservURL $s3Bucket ($scratch.Get "src") "&w=" $elem_val $weservParams " " $elem_val "w") "" }}
+			{{ $srcWebP := delimit (slice $weservURL "?w=" $elem_val $weservParams $weservOutputWebP "&url=" $s3Bucket ($scratch.Get "src") " " $elem_val "w") "" }}
+			{{ $src := delimit (slice $weservURL "?w=" $elem_val $weservParams "&url=" $s3Bucket ($scratch.Get "src") " " $elem_val "w") "" }}
 			{{ $srcsetWebP = $srcsetWebP | append $srcWebP }}
 			{{ $srcset = $srcset | append $src }}
 		{{ end }}
