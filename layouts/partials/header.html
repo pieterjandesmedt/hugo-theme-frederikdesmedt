@@ -9,6 +9,8 @@
 	{{ "<!-- Stylesheets -->" | safeHTML }}
 	<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
 
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
 	{{ $custom := resources.Get "sass/stylesheet.scss" | toCSS }}
 	{{ $style := slice $custom | resources.Concat "css/style.css" | minify | fingerprint }}
 
