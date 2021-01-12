@@ -1,0 +1,23 @@
+<footer id="footer" class="section">
+	<div class="container">
+		<div class="level">
+			<ul class="icons level-left">
+				{{ range .Site.Params.Footer.social }}
+				<li>
+					<a href="{{ .url | safeHTML }}" class="icon" target="_blank" title="{{ .label }}">
+						<i class="{{ .icon }}"></i>
+					</a>
+				</li>
+				{{ end }}
+			</ul>
+			<ul class="copyright level-right">
+				<li>&copy; {{ .Site.Params.Footer.copyright }}</li>
+				{{ range .Site.Params.Footer.quicklinks}}
+				<li>{{ .text }}
+					<a href="{{ .url | safeHTML }}">{{ .alt }}</a>
+				</li>
+				{{ end }}
+			</ul>
+		</div>
+	</div>
+</footer>

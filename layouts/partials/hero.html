@@ -1,0 +1,15 @@
+<section class="hero">
+	<div class="hero-body pb-2">
+		<div class="container">
+			{{ with .Site.Title }}
+			<h1 class="is-size-1 is-lowercase">
+				<a href="/" class="has-text-dark">{{ . }}</a>
+			</h1>
+			{{ end }} {{ with .Site.Params.Banner.subtitle }}
+			<h4 class="subtitle">
+				{{ . | safeHTML }}
+			</h4>
+			{{ end }}
+		</div>
+	</div>
+</section>

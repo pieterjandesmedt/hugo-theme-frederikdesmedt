@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+
+{{ partial "header.html" . }}
+
+<body class="single-page" id="{{ delimit (last 2 (split (urlize .RelPermalink) "/")) "" }}">
+
+	{{ partial "hero" . }}
+	{{ partial "navbar" . }}
+	<!-- One -->
+	<section class="section">
+		<div class="container">
+			<header>
+				{{ with .Title }}
+				<h2 class="is-size-2">{{ . }}</h2>
+				{{ end }} {{ with .Params.subtitle }}
+				<h3 class="is-size-3">{{ . }}</h3>
+				{{ end }}
+			</header>
+			<div class="content">
+				{{ .Content }}
+			</div>
+			<div class="gallery">
+				{{ with .Params.images }} {{ with (index . 0) }}
+				<div class="first-image">
+					<div class="image-container">
+						{{ partial "micro/image" (dict "filename" . ) }}
+					</div>
+				</div>
+				{{ end }} {{ end }}
+
+				<div id="images">
+					{{ with .Params.images }} {{ range $i, $im := . }} {{ if ne $i 0 }}
+					<div class="image-container">
+						{{ partial "micro/image" (dict "filename" $im) }}
+					</div>
+					{{ end }} {{ end }} {{ end }}
+				</div>
+			</div>
+
+			{{ partial "article-tags" . }}
+		</div>
+	</section>
+	{{ if .Site.Params.footer.enable }} {{ partial "footer.html" . }} {{ end }}
+	</div>
+	{{ partial "js.html" . }}
+
+	<script>
+		var options = {
+			container: '#images',
+			columns: 1,
+			mobileFirst: true,
+			margin: 20,
+			breakAt: {
+				600: 2,
+			}
+		};
+
+		var macy = Macy(options);
+		macy.runOnImageLoad(function () {
+			macy.recalculate(true, true);
+		});
+	</script>
+</body>
+
+</html>

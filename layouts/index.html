@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+
+	{{ partial "header" . }}
+	<body>
+
+
+	{{ partial "hero" . }}
+	{{ partial "navbar" . }}
+
+	{{ partial "tags" . }}
+
+	{{ if .Site.Params.Tiles.enable }}
+		{{ partial "tile" (where .Site.RegularPages.ByWeight.Reverse "Section" "portfolio") }}
+	{{ end }}
+
+	{{ if .Site.Params.Two.enable }}
+		{{ partial "two" . }}
+	{{ end }}
+
+	{{ if .Site.Params.Footer.enable }}
+		{{ partial "footer" . }}
+	{{ end }}
+
+	{{ partial "js" . }}
+
+	<script>
+		var options = {
+			container: '#tiles .container .columns',
+			columns: 1,
+			mobileFirst: true,
+			margin: 20,
+			breakAt: {
+				600: 2,
+				900: 3,
+				1200: 4,
+			}
+		};
+
+		var macy = Macy(options);
+		macy.runOnImageLoad(function () {
+			macy.recalculate(true, true);
+			// myLazyLoad.update();
+		});
+
+	</script>
+	</body>
+</html>

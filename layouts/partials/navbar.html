@@ -1,0 +1,18 @@
+<nav class="navbar is-transparent">
+	<div id="navbar-menu" class="navbar-menu">
+		<div class="navbar-end" style="margin: 0 auto;">
+			{{ range .Site.Params.Navigation.links }}
+			<a class="navbar-item" href="{{ .url | absURL}}">{{ .name }}</a>
+			{{ end }}
+			<!-- <div class="navbar-item has-dropdown has-dropdown-right is-hoverable">
+				<a class="navbar-link">Portfolio</a>
+				<div class="navbar-dropdown is-right is-boxed">
+					<a href="{{ "portfolio" | relLangURL }}" class="navbar-item">All</a>
+					{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+						<a class="navbar-item" href='{{ "tags/" | relLangURL }}{{ $name | urlize }}'>{{ replace $name "-" " " | title }}</a>
+					{{ end }}
+				</div>
+			</div> -->
+		</div>
+	</div>
+</nav>

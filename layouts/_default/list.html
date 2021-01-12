@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+{{ partial "header.html" . }}
+
+<body class="list-page">
+
+	{{ partial "hero" . }}
+	{{ partial "navbar" . }}
+
+	<!-- <section class="hero is-small">
+		<div class="hero-body">
+			<div class="container">
+				{{ with .Title }}
+				<h2 class="is-size-2 is-lowercase">
+					{{ . }}
+				</h2>
+				{{ end }}
+
+			</div>
+		</div>
+	</section> -->
+
+	{{ partial "tags" . }}
+
+	<div class="content">{{ .Content }}</div>
+
+	{{ $pages := cond (eq 0 (len .Data.Pages)) (where .Site.RegularPages.ByWeight.Reverse "Section" "portfolio") .Data.Pages.ByWeight.Reverse }}
+	{{ partial "tile.html" $pages }}
+
+	{{ if .Site.Params.footer.enable }}
+		{{ partial "footer.html" . }}
+	{{ end }}
+
+	{{ partial "js.html" . }}
+
+	<script>
+		var options = {
+			container: '#tiles .container .columns',
+			columns: 1,
+			mobileFirst: true,
+			margin: 20,
+			breakAt: {
+				600: 2,
+				900: 3,
+				1200: 4,
+			}
+		};
+
+		var macy = Macy(options);
+		macy.runOnImageLoad(function () {
+			macy.recalculate(true, true);
+			// myLazyLoad.update();
+		});
+
+	</script>
+
+</body>
+</html>

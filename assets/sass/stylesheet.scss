@@ -1,0 +1,336 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans+Narrow:300,300italic,600,600italic");
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
+$black: #333;
+$tablet: 600px;
+$desktop: 900px;
+$widescreen: 1200px;
+$fullhd: 1800px;
+$size-1: 2.2rem;
+$size-2: 1.8rem;
+$size-3: 1.4rem;
+$size-4: 1.2rem;
+$size-5: 1.1rem;
+$size-6: 1rem;
+$size-7: 0.75rem;
+@import "bulma/sass/utilities/derived-variables";
+@import "bulma/sass/utilities/animations";
+@import "bulma/sass/utilities/mixins";
+@import "bulma/sass/utilities/controls";
+// 6. Import the rest of Bulma
+@import "bulma/sass/base/_all";
+@import "bulma/sass/layout/_all";
+@import "bulma/sass/helpers/_all";
+@import "bulma/sass/elements/button";
+@import "bulma/sass/elements/content";
+@import "bulma/sass/elements/container";
+@import "bulma/sass/form/shared";
+@import "bulma/sass/form/tools";
+@import "bulma/sass/form/input-textarea";
+@import "bulma/sass/elements/image";
+@import "bulma/sass/elements/table";
+@import "bulma/sass/elements/title";
+@import "bulma/sass/grid/columns";
+@import "bulma/sass/grid/tiles";
+@import "bulma/sass/components/card";
+@import "bulma/sass/components/level";
+@import "bulma/sass/components/media";
+@import "bulma/sass/components/modal";
+@import "bulma/sass/components/navbar";
+@import "bulma/sass/components/dropdown";
+html,
+body {
+	font-family: "PT Sans Narrow", "PT Sans", "Arial Narrow", Verdana, Geneva, sans-serif;
+}
+
+@media screen {
+	html {
+		font-size: 12px;
+	}
+}
+
+@media screen and (min-width: $tablet) {
+	html {
+		font-size: 13px;
+	}
+}
+
+@media screen and (min-width: $desktop) {
+	html {
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: $widescreen) {
+	html {
+		font-size: 15px;
+	}
+}
+
+@media screen and (min-width: $fullhd) {
+	html {
+		font-size: 16px;
+	}
+}
+
+.icon {
+	background: $black;
+	color: white;
+	border-radius: $radius;
+	width: 2em;
+	height: 2em;
+	display: block;
+	line-height: 2em;
+	text-align: center;
+	margin-top: 0rem;
+	font-size: .9em;
+	&:hover {
+		color: $blue;
+	}
+}
+
+.navbar {
+	strong {
+		letter-spacing: 6px;
+	}
+}
+
+.image-container {
+	&>a,
+	&>div {
+		position: relative;
+		display: block;
+		background-size: cover;
+		&>img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+		}
+	}
+}
+
+.navbar.is-transparent .navbar-dropdown {
+	.is-right {
+		right: .75rem;
+	}
+	a.navbar-item:hover {
+		text-shadow: 0 0 1px white;
+	}
+}
+
+
+/* ----- HERO ----- */
+
+.hero {
+	text-align: center;
+	h1,
+	h2,
+	h3 {
+		border-bottom: none;
+	}
+	h4 a {
+		border-bottom: 1px dotted white;
+	}
+}
+
+/* ----- TILES ----- */
+
+#tiles {
+	margin-bottom: 0;
+	article {
+		position: relative;
+		overflow: hidden;
+		header {
+			text-align: center;
+			padding: .75rem;
+			z-index: 2;
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			flex-direction: column;
+			&>* {
+				flex-grow: 0;
+				margin: 0;
+			}
+			small.tags {
+				text-transform: uppercase;
+				opacity: 0.5;
+				margin-bottom: .5em;
+			}
+		}
+	}
+}
+
+// @media screen and (min-width: $tablet) { #tiles { margin: 1rem; } }
+// @media screen and (min-width: $desktop) { #tiles { margin: 2rem; } }
+// @media screen and (min-width: $widescreen) { #tiles { margin: 3rem; } }
+// @media screen and (min-width: $fullhd) { #tiles { margin: 4rem; } }
+[data-responsive-background-image] {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+[data-responsive-background-image] img {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	&[data-was-processed] {
+		display: none;
+	}
+}
+
+/* ----- TWO ----- */
+
+/* ----- CONTACT ----- */
+
+@media screen and (min-width: $tablet) {
+	#contact {
+		.contact-method {
+			border-left: 1px solid lighten($black, 10);
+			padding-left: 1rem;
+		}
+	}
+}
+
+#contact {
+	.media+.media {
+		border-top: none;
+	}
+}
+
+/* ----- FOOTER ----- */
+
+#footer {
+	border-top: 1px solid lighten($black, 10);
+	margin-top: 3rem;
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		li {
+			display: inline-block;
+			margin-right: .5rem;
+		}
+	}
+	ul.copyright {
+		margin-top: 2rem;
+		font-size: small;
+		li {
+			padding-right: .5rem;
+			border-right: 1px solid lighten($black, 30);
+			height: .9em;
+			line-height: 1em;
+			&:last-child {
+				border: none;
+			}
+		}
+	}
+	.svg-inline--fa {
+		height: 2em;
+	}
+}
+
+/* ----- SINGLE PAGE ------ */
+
+.single-page {
+	a {
+		outline: none;
+	}
+	.first-image {
+		width: 100%;
+		margin-bottom: 20px;
+		img {
+			width: 100%;
+		}
+	}
+	img[src*="png"] {
+		background: white;
+	}
+	.tags {
+		margin-top: 3rem;
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li {
+				display: inline-block;
+				font-size: small;
+				border: 1px solid $blue;
+				padding: .4rem;
+				text-transform: uppercase;
+				svg {
+					font-size: 80%;
+					margin-right: .3em;
+				}
+			}
+		}
+	}
+}
+
+/* ----- TAGS ----- */
+
+#tags {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	ul.tags {
+		list-style: none;
+		padding: 0;
+		margin: 3em 0 0;
+		li {
+			display: inline-block;
+			font-size: small;
+			padding: 0 .75rem 0 0;
+			text-transform: uppercase;
+			svg {
+				font-size: 80%;
+				margin-right: .3em;
+			}
+		}
+	}
+}
+
+
+// lozad fade-in
+img.lozad {
+	opacity: 0;
+}
+
+img.lozad[data-fully-loaded="true"][data-loaded="true"],
+[data-fully-loaded="true"][data-loaded="true"] img.lozad {
+	animation-name: fadein;
+	animation-duration: 0.2s;
+	animation-fill-mode: both;
+}
+
+img.lozad.fadeup[data-fully-loaded="true"][data-loaded="true"],
+[data-fully-loaded="true"][data-loaded="true"] img.lozad.fadeup {
+	animation-name: fadeup;
+	animation-duration: 0.5s;
+	animation-fill-mode: both;
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeup {
+	from {
+		opacity: 0;
+		transform: translateY(200px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+

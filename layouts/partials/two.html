@@ -1,0 +1,7 @@
+<section id="two" class="section">
+	<div class="container">
+		<h2>{{ .Site.Params.Two.title}}</h2>
+		<p>{{ .Site.Params.Two.subtitle }}</p>
+		<a href="{{ .Site.Params.Two.url | absURL}}" class="button is-primary is-outlined">{{ .Site.Params.Two.name | safeHTML }}</a>
+	</div>
+</section>

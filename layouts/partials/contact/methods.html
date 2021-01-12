@@ -1,0 +1,47 @@
+{{ with .Site.Params.Contact.email }}
+<article class="tile is-child contact-method media">
+	<div class="media-left">
+		<span class="icon">
+			<i class="fas fa-envelope"></i>
+		</span>
+	</div>
+	<div class="media-content">
+		{{ range . }}
+		<h3>{{ .title }}</h3>
+		<a href="#">{{ .email }}</a>
+		{{ end }}
+	</div>
+</article>
+{{ end }}
+{{ with .Site.Params.Contact.phone }}
+<article class="tile is-child contact-method media">
+	<div class="media-left">
+		<span class="icon">
+			<i class="fas fa-phone"></i>
+		</span>
+	</div>
+	<div class="media-content">
+		{{ range . }}
+		<h3>{{ .title }}</h3>
+		<span>{{ .phone }}</span>
+		{{ end }}
+	</div>
+</article>
+{{ end }}
+{{ with .Site.Params.Contact.address }}
+<article class="tile is-child contact-method media">
+	<div class="media-left">
+		<span class="icon">
+			<i class="fas fa-home"></i>
+		</span>
+	</div>
+	<div class="media-content">
+		{{ range . }}
+		<h3>{{ .title }}</h3>
+		<span>{{ .street }}
+			<br /> {{ .city }}
+			<br /> {{ .country }}</span>
+		{{ end }}
+	</div>
+</article>
+{{ end }}

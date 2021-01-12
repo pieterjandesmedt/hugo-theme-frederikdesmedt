@@ -1,0 +1,13 @@
+{{ if and .Params.tags (ne .Section "") }}
+<div class="tags">
+	<ul>
+		{{ range $name := .Params.tags }}
+		{{ if ne $name "" }}
+		<li><a href='{{ (printf "tags/%s" $name) | urlize | lower | relLangURL }}'><i class="fas fa-tag"></i> {{ replace $name "-" " " }}</a>
+		</li>
+		{{ end }}
+		{{ end }}
+	</ul>
+</div>
+<!-- /#article-tags -->
+{{ end }}

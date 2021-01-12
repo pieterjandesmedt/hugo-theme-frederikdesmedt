@@ -1,0 +1,20 @@
+{{ if isset . "image" }}
+	{{ $image := replace .image " " "%20" }}
+	{{ $sizes := .sizes }}
+	{{ with (imageConfig (delimit (slice "static" "images" "1000" .image) "/" )) }}
+		{{ $class := cond (gt .Width .Height) "is-wide" "is-tall" }}
+			<img data-src='{{ delimit (slice "images" "12" $image) "/" | relURL }}'
+				data-srcset='{{ delimit (slice "images" "100" $image) "/" | relURL }} 100w, {{ delimit (slice "images" "200" $image) "/" | relURL }} 200w, {{ delimit (slice "images" "400" $image) "/" | relURL }} 400w, {{ delimit (slice "images" "600" $image) "/" | relURL }} 600w, {{ delimit (slice "images" "1000" $image) "/" | relURL }} 1000w,'
+				sizes="{{ $sizes }}"
+				class="image {{ $class }}" />
+	{{ end }}
+{{ else }}
+	{{ $image := replace . " " "%20" }}
+	{{ with (imageConfig (delimit (slice "static" "images" "1000" .) "/" )) }}
+		{{ $class := cond (gt .Width .Height) "is-wide" "is-tall" }}
+				<img data-src='{{ delimit (slice "images" "12" $image) "/" | relURL }}'
+				data-srcset='{{ delimit (slice "images" "100" $image) "/" | relURL }} 100w, {{ delimit (slice "images" "200" $image) "/" | relURL }} 200w, {{ delimit (slice "images" "400" $image) "/" | relURL }} 400w, {{ delimit (slice "images" "600" $image) "/" | relURL }} 600w, {{ delimit (slice "images" "1000" $image) "/" | relURL }} 1000w,'
+				sizes="(min-width: 600px) 50vw, 100vw"
+				class="image {{ $class }}" />
+	{{ end }}
+{{ end }}

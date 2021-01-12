@@ -1,0 +1,18 @@
+<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+
+{{ template "_internal/google_analytics_async.html" . }}
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+<script type="text/javascript">
+	const observer = lozad('.lozad', {
+		rootMargin: '100px 0px', // syntax similar to that of CSS Margin
+	});
+	observer.observe();
+</script>
+
+{{ range .Site.Params.custom_js }}
+<script src="{{ . | absURL }}"></script>
+{{ end }}

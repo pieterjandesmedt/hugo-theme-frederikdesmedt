@@ -1,0 +1,24 @@
+<section id="tiles">
+	<div class="container">
+		<div class="columns is-multiline is-gapless">
+			{{ range $index, $element := . }}
+			{{ $url := $element.Permalink }}
+			<a href="{{ $url }}" class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+				<article class="card">
+					{{ with $element.Params.images }}
+					{{ with (index . 0) }}
+					<div class="image-container">
+						{{ partial "micro/image" (dict "filename" . ) }}
+					</div>
+					{{ end }}
+					{{ end }}
+					<header>
+						{{ with .Params.tags }}<small class="tags">{{ delimit . "-"}}</small>{{ end }}
+						<h3>{{ $element.Title }}{{ with $element.Params.subtitle }} | {{ . }}{{ end }}</h3>
+					</header>
+				</article>
+			</a>
+			{{ end }}
+		</div>
+	</div>
+</section>

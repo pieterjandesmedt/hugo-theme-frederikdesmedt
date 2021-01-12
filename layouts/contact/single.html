@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+
+{{ partial "header.html" . }}
+
+<body class="contact" id="{{ delimit (last 2 (split (urlize .RelPermalink) "/")) "" }}">
+	{{ partial "hero" . }}
+	{{ partial "navbar" . }}
+
+	<!-- One -->
+	<section class="section">
+		<div class="container">
+			<header>
+				{{ with .Title }}
+				<h2 class="is-size-2">{{ . }}</h2>
+				{{ end }}
+			</header>
+			<div class="content">{{ .Content }}</div>
+			{{ partial "contact" . }}
+		</div>
+	</section>
+	{{ if .Site.Params.footer.enable }} {{ partial "footer.html" . }} {{ end }}
+	</div>
+	{{ partial "js.html" . }}
+
+</body>
+
+</html>

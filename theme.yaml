@@ -1,0 +1,14 @@
+name: frederikdesmedt
+license: Creative Commons Attribution 3.0
+description: A portfolio/blog website built for frederikdesmedt.com
+tags:
+- portfolio
+- company
+- contact form
+- google analytics
+- blog
+features:
+- blog
+- portfolio
+- contact form
+min_version: 0.79

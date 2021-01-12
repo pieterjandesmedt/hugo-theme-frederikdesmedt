@@ -1,0 +1,14 @@
+<section id="tags" class="section">
+	<div class="container">
+		<ul class="tags">
+			<li>
+				<a href="{{ "/" | relLangURL }}">All</a>
+			</li>
+			{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+			<li>
+				<a href="{{ "tags/" | relLangURL }}{{ $name | urlize }}">{{ (replace $name "-" " ") | title }}</a>
+			</li>
+			{{ end }}
+		</ul>
+	</div>
+</section>
