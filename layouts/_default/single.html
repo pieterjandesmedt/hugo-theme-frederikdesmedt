@@ -24,7 +24,7 @@
 				{{ with .Params.images }} {{ with (index . 0) }}
 				<div class="first-image">
 					<div class="image-container">
-						{{ partial "micro/image" (dict "filename" . ) }}
+						{{ partial "micro/image-with-link" (dict "filename" . ) }}
 					</div>
 				</div>
 				{{ end }} {{ end }}
@@ -32,7 +32,7 @@
 				<div id="images">
 					{{ with .Params.images }} {{ range $i, $im := . }} {{ if ne $i 0 }}
 					<div class="image-container">
-						{{ partial "micro/image" (dict "filename" $im) }}
+						{{ partial "micro/image-with-link" (dict "filename" $im) }}
 					</div>
 					{{ end }} {{ end }} {{ end }}
 				</div>
