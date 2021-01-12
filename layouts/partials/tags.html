@@ -4,9 +4,14 @@
 			<li>
 				<a href="{{ "/" | relLangURL }}">All</a>
 			</li>
-			{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+			{{ $permalink := .Permalink }}
+			{{ range .Site.Taxonomies.tags }}
 			<li>
-				<a href="{{ "tags/" | relLangURL }}{{ $name | urlize }}">{{ (replace $name "-" " ") | title }}</a>
+				{{ if (eq $permalink .Page.Permalink) }}
+				<span class="has-text-weight-bold">{{ .Page.Title }}</span>
+				{{ else }}
+				<a href="{{ .Page.Permalink | relLangURL }}">{{ .Page.Title }}</a>
+				{{ end }}
 			</li>
 			{{ end }}
 		</ul>
